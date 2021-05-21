@@ -11,8 +11,12 @@ public class Biblioteca {
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }
-    public void save(Livro livro) {
+    public boolean save(Livro livro) {
+        if (livros.stream().anyMatch(c -> c.getIsbn().equals(livro.getIsbn()))) {
+            return false;
+        }
         livros.add(livro);
+        return true;
     }
     public int size() {
         return livros.size();

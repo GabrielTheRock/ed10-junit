@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
 public class Testes {
@@ -17,7 +19,26 @@ public class Testes {
         //entao o total de livros cadastrados igual 1
         assertEquals (1, biblioteca.size());
     }
-    
+
+    @Test
+    public void ct02_cadastrar_livro_com_isbn_ja_cadastrado() {
+        //dado que nao existem livros cadastrados
+        Biblioteca biblioteca = new Biblioteca();
+        //quando um livro é cadastrado
+        Livro umLivro = new Livro();
+        umLivro.setAutor("Pressman");
+        umLivro.setIsbn("1111");
+        umLivro.setTitulo("Engenharia de Software");
+        biblioteca.save(umLivro);
+        List<Livro> lista = biblioteca.getLivros();
+        //entao
+        Livro re = new Livro();
+        re.setAutor("Pressman");
+        re.setIsbn("1111");
+        re.setTitulo("Engenharia de Software");
+        assertEquals(false, biblioteca.save(re));
+    }
+
     @Test
     public void ct03_nao_cadastrar_livro_com_isbn_em_branco() {
         Biblioteca biblioteca = new Biblioteca();
