@@ -36,7 +36,8 @@ public class Testes {
         re.setAutor("Pressman");
         re.setIsbn("1111");
         re.setTitulo("Engenharia de Software");
-        assertEquals(false, biblioteca.save(re));
+        biblioteca.save(re);
+        assertEquals(1, biblioteca.size());
     }
 
     @Test
@@ -65,4 +66,16 @@ public class Testes {
         assertEquals(0, biblioteca.size());
     }
 
+    @Test
+    public void ct05_nao_cadastrar_livro_com_autor_em_branco() {
+        Biblioteca biblioteca = new Biblioteca();
+        //livro sendo cadastrado com titulo em branco
+        Livro livroNovo = new Livro();
+        livroNovo.setAutor("TioBob");;
+        livroNovo.setIsbn("0001");
+        livroNovo.setTitulo("");
+        biblioteca.save(livroNovo);
+        //A quantidade de livros cadastrados deve ser igual a 0
+        assertEquals(0, biblioteca.size());
+    }
 }

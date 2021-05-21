@@ -3,22 +3,27 @@ import java.util.List;
 
 public class Biblioteca {
 
-    private List<Livro> livros = new ArrayList<Livro>();
+    private List<Livro> livros = new ArrayList<>();
 
     public List<Livro> getLivros() {
         return livros;
     }
+
     public void setLivros(List<Livro> livros) {
         this.livros = livros;
     }
-    public boolean save(Livro livro) {
-        if (livros.stream().anyMatch(c -> c.getIsbn().equals(livro.getIsbn()))) {
-            return false;
+
+    public void save(Livro livro) {
+        if (!livros.stream().anyMatch(c -> c.getIsbn().equals(livro.getIsbn())) &&
+                !livro.getIsbn().equals("") && !livro.getAutor().equals("") && !livro.getTitulo().equals("")) {
+            livros.add(livro);
         }
-        livros.add(livro);
-        return true;
     }
+
     public int size() {
-        return livros.size();
+        if (!livros.isEmpty()) {
+            return livros.size();
+        }
+        return 0;
     }
 }
