@@ -69,7 +69,7 @@ public class Testes {
     @Test
     public void ct05_nao_cadastrar_livro_com_autor_em_branco() {
         Biblioteca biblioteca = new Biblioteca();
-        //livro sendo cadastrado com titulo em branco
+        //livro sendo cadastrado com autor em branco
         Livro livroNovo = new Livro();
         livroNovo.setAutor("TioBob");;
         livroNovo.setIsbn("0001");
