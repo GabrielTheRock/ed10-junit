@@ -31,5 +31,17 @@ public class Testes {
         assertEquals(0, biblioteca.size());
     }
 
+    @Test
+    public void ct04_nao_cadastrar_livro_com_titulo_em_branco() {
+        Biblioteca biblioteca = new Biblioteca();
+        //livro sendo cadastrado com titulo em branco
+        Livro livroNovo = new Livro();
+        livroNovo.setAutor("TioBob");;
+        livroNovo.setIsbn("0001");
+        livroNovo.setTitulo("");
+        biblioteca.save(livroNovo);
+        //A quantidade de livros cadastrados deve ser igual a 0
+        assertEquals(0, biblioteca.size());
+    }
 
 }
